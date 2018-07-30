@@ -1,11 +1,16 @@
 package exercises;
 
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.hasXPath;
+import static org.hamcrest.core.Is.is;
 
 
 public class RestAssuredExercises1Test {
@@ -33,7 +38,10 @@ public class RestAssuredExercises1Test {
         given().
                 spec(requestSpec).
                 when().
-                then();
+                get("/2016/drivers.json").
+                then()
+                .assertThat()
+                .statusCode(200);
     }
 
     /*******************************************************
@@ -44,10 +52,13 @@ public class RestAssuredExercises1Test {
     @Test
     public void checkResponseCodeForIncorrectRequest() {
 
-        given().
-                spec(requestSpec).
-                when().
-                then();
+//        given().
+//                spec(requestSpec).
+//                when()
+//                .get("/incorrect.json")
+//                .then()
+//                .assertThat()
+//                .statusCode(404);
     }
 
     /*******************************************************
@@ -58,10 +69,12 @@ public class RestAssuredExercises1Test {
     @Test
     public void checkResponseContentTypeJson() {
 
-        given().
-                spec(requestSpec).
-                when().
-                then();
+//        given().
+//                spec(requestSpec).
+//                when().
+//                get("/2016/drivers.json").
+//                then().
+//        contentType(ContentType.JSON);
     }
 
     /***********************************************
@@ -74,10 +87,12 @@ public class RestAssuredExercises1Test {
     @Test
     public void checkTheFirstRaceOf2014WasAtAlbertPark() {
 
-        given().
-                spec(requestSpec).
-                when().
-                then();
+//        given().
+//                spec(requestSpec).
+//                when().
+//                get("/2014/1/circuits.json").
+//                then().
+//        and().body("MRData.CircuitTable.Circuits[0].circuitId",is("albert_park"));
     }
 
     /***********************************************
@@ -88,11 +103,12 @@ public class RestAssuredExercises1Test {
 
     @Test
     public void checkThereWasARaceAtSilverstoneIn2014() {
-
-        given().
-                spec(requestSpec).
-                when().
-                then();
+//
+//        given().
+//                spec(requestSpec).
+//                when().
+//                get("/2014/circuits.json").
+//                then().body("MRData.CircuitTable.Circuits",(hasItems("circuitId", containsString("silverstone"))));
     }
 
     /***********************************************
