@@ -69,12 +69,12 @@ public class RestAssuredExercises1Test {
     @Test
     public void checkResponseContentTypeJson() {
 
-//        given().
-//                spec(requestSpec).
-//                when().
-//                get("/2016/drivers.json").
-//                then().
-//        contentType(ContentType.JSON);
+        given().
+                spec(requestSpec).
+                when().
+                get("/2016/drivers.json").
+                then().
+        contentType(ContentType.JSON);
     }
 
     /***********************************************
