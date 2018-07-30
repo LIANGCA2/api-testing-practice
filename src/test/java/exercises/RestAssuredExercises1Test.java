@@ -87,12 +87,12 @@ public class RestAssuredExercises1Test {
     @Test
     public void checkTheFirstRaceOf2014WasAtAlbertPark() {
 
-//        given().
-//                spec(requestSpec).
-//                when().
-//                get("/2014/1/circuits.json").
-//                then().
-//        and().body("MRData.CircuitTable.Circuits[0].circuitId",is("albert_park"));
+        given().
+                spec(requestSpec).
+                when().
+                get("/2014/1/circuits.json").
+                then().
+        and().body("MRData.CircuitTable.Circuits[0].circuitId",is("albert_park"));
     }
 
     /***********************************************
