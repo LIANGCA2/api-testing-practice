@@ -62,7 +62,7 @@ public class RestAssuredExercises3Test {
 
     private static String ninthDriverId;
 
-
+@BeforeAll
     static void getNinthDriverId() {
         ninthDriverId = given().
                 spec(requestSpec).
