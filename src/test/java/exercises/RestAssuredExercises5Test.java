@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isOneOf;
 
 public class RestAssuredExercises5Test {
 
@@ -88,7 +89,8 @@ public class RestAssuredExercises5Test {
 		given().
 			spec(requestSpec).
 		when().
-		then();
+				get("/xml/speedrecords").
+		then().body("speedRecords.car[4].@country",isOneOf("Italy","Germany"));
 	}
 	
 	/*******************************************************
