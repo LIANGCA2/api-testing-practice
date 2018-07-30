@@ -4,8 +4,14 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 
 public class RestAssuredExercises2Test {
@@ -31,12 +37,47 @@ public class RestAssuredExercises2Test {
 
 	//todo
 
+
+	static Stream<Arguments> driverDataProvider_1() {
+		return Stream.of(
+				Arguments.of("monza", "Italy")
+		);
+	}
+
+	@ParameterizedTest
+	@MethodSource("driverDataProvider_1")
+	@Test
+	public void checkCountryEqualItalyForCircuit(String driverName, String country) {
+
+		given().
+				spec(requestSpec).
+				pathParam("driver", driverName).
+				when().
+				get("/circuits/{driver}.json").
+				then().body("MRData.CircuitTable.Circuits[0].Location.country",equalTo(country));
+	}
+
+
+
 	/*******************************************************
 	 * Use junit-jupiter-params for @ParameterizedTest that specifies for all races
 	 * (adding the first four suffices) in 2015 how many  
 	 * pit stops Max Verstappen made
 	 * (race 1 = 1 pitstop, 2 = 3, 3 = 2, 4 = 2)
 	 ******************************************************/
+//	static Stream<Arguments> driverDataProvider_2() {
+//		return Stream.of(
+//				Arguments.of("MaxPitstopsRace1", 1),
+//				Arguments.of("MaxPitstopsRace2", 3),
+//				Arguments.of("MaxPitstopsRace3", 2),
+//				Arguments.of("MaxPitstopsRace4", 2)
+//		);
+//	}
+//
+//	@ParameterizedTest
+//	@Me
+
+
 
 	//todo
 
@@ -45,14 +86,17 @@ public class RestAssuredExercises2Test {
 	 * is /circuits/monza.json)
 	 * and check the country this circuit can be found in
 	 ******************************************************/
-	
+
+	@ParameterizedTest
 	@Test
 	public void checkCountryForCircuit() {
 		
 		given().
 			spec(requestSpec).
+				pathParam("driver","monza").
 		when().
-		then();
+				get("/circuits/{driver}.json").
+		then().body("MRData/CircuitTable/Circuits/country",equalTo("Italy"));
 	}
 	
 	/*******************************************************
