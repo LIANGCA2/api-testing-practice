@@ -105,6 +105,6 @@ public class RestAssuredExercises5Test {
 			spec(requestSpec).
 		when().get("/xml/speedrecords").
 		then()
-		.body("speedRecords.car[2].@make",endsWith("Benz"));
+		.body("speedRecords.car.findAll{it.@make.grep(~/.*Benz/)}.size()",is(2));
 	}
 }

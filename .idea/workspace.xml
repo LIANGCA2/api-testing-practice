@@ -580,7 +580,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.RestAssuredExercises5Test.checkFourRecordsHaveBeenSetByCarsFromEitherItalyOrGermany">
+  <component name="RunManager" selected="JUnit.RestAssuredExercises5Test.checkTwoRecordsHaveBeenSetByCarsWhoseMakeEndOnBenz">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -746,9 +746,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RestAssuredExercises5Test.checkTwoRecordsHaveBeenSetByCarsWhoseMakeEndOnBenz" />
         <item itemvalue="JUnit.RestAssuredExercises5Test.checkFourRecordsHaveBeenSetByCarsFromEitherItalyOrGermany" />
         <item itemvalue="JUnit.RestAssuredExercises5Test.checkThreeRecordsHaveBeenSetByCarsFromTheUK" />
-        <item itemvalue="JUnit.RestAssuredExercises5Test.checkTwoRecordsHaveBeenSetByCarsWhoseMakeEndOnBenz" />
         <item itemvalue="JUnit.RestAssuredExercises5Test" />
         <item itemvalue="JUnit.RestAssuredExercises5Test.checkFourthSpeedRecordWasSetbyAnAstonMartin" />
       </list>
