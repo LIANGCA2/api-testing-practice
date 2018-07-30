@@ -52,13 +52,13 @@ public class RestAssuredExercises1Test {
     @Test
     public void checkResponseCodeForIncorrectRequest() {
 
-//        given().
-//                spec(requestSpec).
-//                when()
-//                .get("/incorrect.json")
-//                .then()
-//                .assertThat()
-//                .statusCode(404);
+        given().
+                spec(requestSpec).
+                when()
+                .get("/incorrect.json")
+                .then()
+                .assertThat()
+                .statusCode(404);
     }
 
     /*******************************************************
