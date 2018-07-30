@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 
 
 public class RestAssuredExercises2Test {
@@ -46,8 +47,7 @@ public class RestAssuredExercises2Test {
 
 	@ParameterizedTest
 	@MethodSource("driverDataProvider_1")
-	@Test
-	public void checkCountryEqualItalyForCircuit(String driverName, String country) {
+	public void checkCountryForCircuit(String driverName, String country) {
 
 		given().
 				spec(requestSpec).
@@ -65,17 +65,9 @@ public class RestAssuredExercises2Test {
 	 * pit stops Max Verstappen made
 	 * (race 1 = 1 pitstop, 2 = 3, 3 = 2, 4 = 2)
 	 ******************************************************/
-//	static Stream<Arguments> driverDataProvider_2() {
-//		return Stream.of(
-//				Arguments.of("MaxPitstopsRace1", 1),
-//				Arguments.of("MaxPitstopsRace2", 3),
-//				Arguments.of("MaxPitstopsRace3", 2),
-//				Arguments.of("MaxPitstopsRace4", 2)
-//		);
-//	}
-//
-//	@ParameterizedTest
-//	@Me
+
+
+
 
 
 
@@ -87,17 +79,7 @@ public class RestAssuredExercises2Test {
 	 * and check the country this circuit can be found in
 	 ******************************************************/
 
-	@ParameterizedTest
-	@Test
-	public void checkCountryForCircuit() {
-		
-		given().
-			spec(requestSpec).
-				pathParam("driver","monza").
-		when().
-				get("/circuits/{driver}.json").
-		then().body("MRData/CircuitTable/Circuits/country",equalTo("Italy"));
-	}
+
 	
 	/*******************************************************
 	 * Request the pitstop data for the first four races in
@@ -105,13 +87,27 @@ public class RestAssuredExercises2Test {
 	 * /2015/1/drivers/max_verstappen/pitstops.json)
 	 * and verify the number of pit stops made
 	 ******************************************************/
-	
-	@Test
-	public void checkNumberOfPitstopsForMaxVerstappenIn2015() {
+
+	static Stream<Arguments> driverDataProvider_2() {
+		return Stream.of(
+				Arguments.of("1", 1),
+				Arguments.of("2", 3),
+				Arguments.of("3", 2),
+				Arguments.of("4", 2)
+		);
+	}
+
+
+
+	@ParameterizedTest
+	@MethodSource("driverDataProvider_2")
+	public void checkNumberOfPitstopsForMaxVerstappenIn2015(String driverName, Integer permanentNumber) {
 		
 		given().
 			spec(requestSpec).
+				pathParam("driver",driverName).
 		when().
-		then();
+				get("/2015/{driver}/drivers/max_verstappen/pitstops.json").
+		then().body("MRData.RaceTable.Races[0].PitStops.size()",is(permanentNumber));
 	}
 }
