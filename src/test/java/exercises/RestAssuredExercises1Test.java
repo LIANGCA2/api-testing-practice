@@ -103,12 +103,12 @@ public class RestAssuredExercises1Test {
 
     @Test
     public void checkThereWasARaceAtSilverstoneIn2014() {
-//
-//        given().
-//                spec(requestSpec).
-//                when().
-//                get("/2014/circuits.json").
-//                then().body("MRData.CircuitTable.Circuits",(hasItems("circuitId", containsString("silverstone"))));
+
+        given().
+                spec(requestSpec).
+                when().
+                get("/2014/circuits.json").
+                then().body("MRData.CircuitTable.Circuits.circuitId",hasItems(containsString("silverstone")));
     }
 
     /***********************************************
