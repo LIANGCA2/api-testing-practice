@@ -88,7 +88,7 @@ public class RestAssuredExercises5Test {
 			spec(requestSpec).
 		when().
 				get("/xml/speedrecords").
-		then().body("speedRecords.car[4].@country",isOneOf("Italy","Germany"));
+		then().body("speedRecords.car.findAll{it.@country=='Italy'||it.@country=='Germany'}.size()",is(4));
 	}
 	
 	/*******************************************************
